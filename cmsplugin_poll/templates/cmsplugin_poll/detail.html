@@ -1,5 +1,5 @@
-{% load i18n poll_tags %}
-
+{% load i18n poll_tags sekizai_tags %}
+{% addtoblock "css" %}
 <style>
   .cmsplugin_poll
   {
@@ -27,6 +27,7 @@
     padding-left: 0.5em;
   }
 </style>
+{% endaddtoblock %}
 
 <div class="cmsplugin_poll">
 

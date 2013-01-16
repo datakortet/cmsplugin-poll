@@ -27,10 +27,10 @@
     padding-left: 0.5em;
   }
   label {
-    display: inline;
+    display: block;
   }
   input[type="submit"] {
-    margin-top: 10px;
+    margin-top: 5px;
   }
 </style>
 {% endaddtoblock %}
@@ -60,9 +60,9 @@
       <form action="{% url cmsplugin_poll.views.vote poll.id %}" method="post">
         {% csrf_token %}
         {% for choice in poll.choice_set.iterator %}
-          <input type="radio" name="choice"
-                 id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-          <label for="choice{{ forloop.counter }}">
+          <label for="choice{{ forloop.counter }}" class="radio">
+            <input type="radio" name="choice"
+                   id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
             {{ choice.choice }}
           </label><br />
         {% endfor %}

@@ -64,7 +64,7 @@
             <input type="radio" name="choice"
                    id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
             {{ choice.choice }}
-          </label><br />
+          </label>
         {% endfor %}
         <input type="hidden" name="next" value="{{ request.path }}">
         <input type="submit" value='{% trans "Vote" %}' />

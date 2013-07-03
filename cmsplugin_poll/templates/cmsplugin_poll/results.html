@@ -1,7 +1,5 @@
 {% load i18n poll_tags %}
 
-<h3>{% trans "Poll results" %}</h3>
-
 {% if messages %}
 <div class="messages">
   {% for message in messages %}
@@ -12,19 +10,22 @@
 </div>
 {% endif %}
 
-<h4>{{ poll.question }}</h4>
-<ul>
-  {% for choice in poll.choice_set.iterator %}
-  <li>
-    {{ choice.choice }}
-    ({{ choice.votes }}
-    {% ifequal choice.votes 1 %}
-    {% trans "vote" %},
-    {% else %}
-    {% trans "votes" %},
-    {%  endifequal %}
-    {% get_choice_rate poll choice %})
-  </li>
-  <div name="choice" id="{{ choice.votes }}"></div>
-  {% endfor %}
-</ul>
+<div class="ui-widget-header">{% trans "Poll results" %}</div>
+<div class="ui-widget-content">
+  <h4>{{ poll.question }}</h4>
+    <ul>
+      {% for choice in poll.choice_set.iterator %}
+      <li>
+        {{ choice.choice }}
+        ({{ choice.votes }}
+        {% ifequal choice.votes 1 %}
+        {% trans "vote" %},
+        {% else %}
+        {% trans "votes" %},
+        {%  endifequal %}
+        {% get_choice_rate poll choice %})
+      </li>
+      <div name="choice" id="{{ choice.votes }}"></div>
+      {% endfor %}
+    </ul>
+</div>

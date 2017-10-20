@@ -12,6 +12,7 @@ class Poll(models.Model):
         verbose_name = _('Poll')
         verbose_name_plural = _('Polls')
         ordering = ('-pub_date',)
+        db_table = 'cmsplugin_poll_pollplugin'
 
     def __unicode__(self):
         return unicode(self.question)

@@ -8,41 +8,14 @@ class Migration(SchemaMigration):
 
     def forwards(self, orm):
         
-        # Adding model 'Poll'
-        db.create_table('cmsplugin_poll_poll', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('question', self.gf('django.db.models.fields.CharField')(max_length=300)),
-            ('pub_date', self.gf('django.db.models.fields.DateTimeField')()),
-        ))
-        db.send_create_signal('cmsplugin_poll', ['Poll'])
-
-        # Adding model 'Choice'
-        db.create_table('cmsplugin_poll_choice', (
-            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('poll', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cmsplugin_poll.Poll'])),
-            ('choice', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('votes', self.gf('django.db.models.fields.IntegerField')(default=0)),
-        ))
-        db.send_create_signal('cmsplugin_poll', ['Choice'])
-
-        # Adding model 'PollPlugin'
-        db.create_table('cmsplugin_pollplugin', (
-            ('cmsplugin_ptr', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['cms.CMSPlugin'], unique=True, primary_key=True)),
-            ('poll', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['cmsplugin_poll.Poll'])),
-        ))
-        db.send_create_signal('cmsplugin_poll', ['PollPlugin'])
+        # Adding field 'Poll.close_date'
+        db.add_column('cmsplugin_poll_poll', 'close_date', self.gf('django.db.models.fields.DateTimeField')(null=True), keep_default=False)
 
 
     def backwards(self, orm):
         
-        # Deleting model 'Poll'
-        db.delete_table('cmsplugin_poll_poll')
-
-        # Deleting model 'Choice'
-        db.delete_table('cmsplugin_poll_choice')
-
-        # Deleting model 'PollPlugin'
-        db.delete_table('cmsplugin_pollplugin')
+        # Deleting field 'Poll.close_date'
+        db.delete_column('cmsplugin_poll_poll', 'close_date')
 
 
     models = {
@@ -75,6 +48,7 @@ class Migration(SchemaMigration):
         },
         'cmsplugin_poll.poll': {
             'Meta': {'object_name': 'Poll'},
+            'close_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'pub_date': ('django.db.models.fields.DateTimeField', [], {}),
             'question': ('django.db.models.fields.CharField', [], {'max_length': '300'})

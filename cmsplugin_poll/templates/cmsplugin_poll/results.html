@@ -10,8 +10,8 @@
 </div>
 {% endif %}
 
-<div class="ui-widget-header">{% trans "Poll results" %}</div>
-<div class="ui-widget-content">
+<b>{% trans "Poll results" %}</b>
+
   <h4>{{ poll.question }}</h4>
     <ul>
       {% for choice in poll.choice_set.iterator %}
@@ -28,4 +28,3 @@
       <div name="choice" id="{{ choice.votes }}"></div>
       {% endfor %}
     </ul>
-</div>

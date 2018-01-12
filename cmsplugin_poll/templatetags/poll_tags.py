@@ -1,6 +1,6 @@
 from django.template import Library
 from django.template.loader import render_to_string
-from cmsplugin_poll.models import Poll
+from ..models import Poll
 
 register = Library()
 

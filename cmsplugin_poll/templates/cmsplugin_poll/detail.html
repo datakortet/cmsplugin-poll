@@ -39,14 +39,13 @@
 {% endaddtoblock %}
 
 <dk-panel>
+  <h3>{% trans "Poll" %}</h3>
+
   {% show_results request poll as show_results %}
   {% if show_results %}
-
     {% include 'cmsplugin_poll/results.html' %}
 
   {% else %}
-
-    <h3>{% trans "Poll" %}</h3>
     <div>
       <h4>{{ poll.question }}</h4>
 

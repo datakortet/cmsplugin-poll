@@ -1,3 +1,4 @@
 *.pyc
 cmsplugin_poll.egg-info/*
 
+cmsplugin-poll.dot  

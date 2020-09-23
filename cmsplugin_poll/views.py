@@ -3,7 +3,7 @@ from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib import messages
 from django.utils.translation import ugettext_lazy as _
-from models import Poll, Choice
+from .models import Poll, Choice
 
 
 def index(request):

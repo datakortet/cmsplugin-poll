@@ -36,7 +36,7 @@ class Poll(models.Model):
 
 
 class Choice(models.Model):
-    poll = models.ForeignKey(Poll, verbose_name=_('poll'))
+    poll = models.ForeignKey(Poll, verbose_name=_('poll'), on_delete=models.CASCADE)
     choice = models.CharField(_('choice'), max_length=200)
     votes = models.IntegerField(_('votes'), default=0)
 
@@ -49,7 +49,7 @@ class Choice(models.Model):
 
 
 class PollPlugin(CMSPlugin):
-    poll = models.ForeignKey(Poll, verbose_name=_("Poll to display"))
+    poll = models.ForeignKey(Poll, verbose_name=_("Poll to display"), on_delete=models.CASCADE)
 
     class Meta:
         verbose_name = _('Poll plugin')

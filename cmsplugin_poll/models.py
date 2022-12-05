@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from cms.models import CMSPlugin
 
@@ -14,15 +15,11 @@ class Poll(models.Model):
         ordering = ('-pub_date',)
         db_table = 'cmsplugin_poll_poll'
 
-    def __unicode__(self):
-        return unicode(self.question)
+    def __str__(self):
+        return self.question
 
-    def __repr__(self):
-        return unicode(self)
-
-    @models.permalink
     def get_absolute_url(self):
-        return ('cmsplugin_poll.views.detail', (self.id,))
+        return reverse('poll_detail', kwargs={'poll_id': self.id})
 
     @property
     def votes(self):
@@ -44,7 +41,7 @@ class Choice(models.Model):
         verbose_name = _('Choice')
         verbose_name_plural = _('Choices')
 
-    def __unicode__(self):
+    def __str__(self):
         return '%s (%s)' % (self.choice, self.poll)
 
 
@@ -54,9 +51,6 @@ class PollPlugin(CMSPlugin):
     class Meta:
         verbose_name = _('Poll plugin')
         verbose_name_plural = _('Poll plugins')
-
-    def __unicode__(self):
-        return self.poll.question
 
     def __str__(self):
         return self.poll.question

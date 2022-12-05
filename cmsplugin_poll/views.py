@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render_to_response, get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib import messages
@@ -14,8 +14,13 @@ def index(request):
 
 def detail(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    c = RequestContext(request, {'poll': poll})
-    return render_to_response('cmsplugin_poll/detail.html', c)
+    closed = poll.close_date is not None
+    voted = request.session.get("poll_%d" % poll.id)
+    context = {
+        'poll': poll,
+        'session_has_voted': voted or closed
+    }
+    return render(request, 'cmsplugin_poll/detail.html', context)
 
 
 def vote(request, poll_id):
@@ -40,5 +45,6 @@ def vote(request, poll_id):
 
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
+    print('RESULTS')
     c = RequestContext(request, {'poll': poll})
-    return render_to_response('cmsplugin_poll/results.html', c)
+    return render(request, 'cmsplugin_poll/results.html', c)

@@ -19,8 +19,7 @@ def get_choice_rate(poll, choice):
     return "%d%%" % poll.getrate(choice)
 
 
-@register.assignment_tag
-def show_results(request, poll):
+@register.simple_tag
+def show_results(session_has_voted, poll):
     poll_is_closed = poll.close_date is not None
-    session_has_voted = request.session.get("poll_%d" % poll.id, False)
     return poll_is_closed or session_has_voted

@@ -1,5 +1,5 @@
-{% load i18n poll_tags sekizai_tags %}
-{% addtoblock "css" %}
+{% load i18n poll_tags %}
+
 <style>
   .cmsplugin_poll
   {
@@ -36,42 +36,39 @@
     margin-left: 40px;
   }
 </style>
-{% endaddtoblock %}
 
-<dk-panel>
-  <h3>{% trans "Poll" %}</h3>
 
-  {% show_results request poll as show_results %}
-  {% if show_results %}
+<h3>{% trans "Poll" %}</h3>
+
+{% if session_has_voted %}
     {% include 'cmsplugin_poll/results.html' %}
-  {% else %}
-    <div>
-      <h4>{{ poll.question }}</h4>
+{% else %}
+<div>
+  <h4>{{ poll.question }}</h4>
 
-      {% if messages %}
-        <div class="messages">
-          {% for message in messages %}
-            <span{% if message.tags %} class="{{ message.tags }}"{% endif %}>
-              {{ message }}.
-            </span>
-          {% endfor %}
-        </div>
-      {% endif %}
-      <form action="/poll/{{ poll.id }}/vote/" method="post">
-        {% csrf_token %}
-        {% for choice in poll.choice_set.iterator %}
-          <label for="choice{{ forloop.counter }}" class="radio">
-            <input type="radio" name="choice"
-                   id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
-            {{ choice.choice }}
-          </label>
-        {% endfor %}
-        <input type="hidden" name="next" value="{{ request.path }}">
-        <input type="submit" value='{% trans "Vote" %}' />
-      </form>
-      <span class="info">
-        {% trans 'Please vote to see the results.' %}
-      </span>
+  {% if messages %}
+    <div class="messages">
+      {% for message in messages %}
+        <span{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+          {{ message }}.
+        </span>
+      {% endfor %}
     </div>
-    {% endif %}
-</dk-panel>
+  {% endif %}
+  <form action="/poll/{{ poll.id }}/vote/" method="post">
+    {% csrf_token %}
+    {% for choice in poll.choice_set.iterator %}
+      <label for="choice{{ forloop.counter }}" class="radio">
+        <input type="radio" name="choice"
+               id="choice{{ forloop.counter }}" value="{{ choice.id }}" />
+        {{ choice.choice }}
+      </label>
+    {% endfor %}
+    <input type="hidden" name="next" value="{{ request.path }}">
+    <input type="submit" class="btn btn-primary" value='{% trans "Vote" %}' />
+  </form>
+  <span class="info">
+    {% trans 'Please vote to see the results.' %}
+  </span>
+</div>
+{% endif %}

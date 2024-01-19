@@ -43,8 +43,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='PollPlugin',
             fields=[
-                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin')),
-                ('poll', models.ForeignKey(verbose_name='Poll to display', to='cmsplugin_poll.Poll')),
+                ('cmsplugin_ptr', models.OneToOneField(parent_link=True, auto_created=True, primary_key=True, serialize=False, to='cms.CMSPlugin', on_delete=models.CASCADE)),
+                ('poll', models.ForeignKey(verbose_name='Poll to display', to='cmsplugin_poll.Poll', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'Poll plugin',
@@ -55,7 +55,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='choice',
             name='poll',
-            field=models.ForeignKey(verbose_name='poll', to='cmsplugin_poll.Poll'),
+            field=models.ForeignKey(verbose_name='poll', to='cmsplugin_poll.Poll', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]

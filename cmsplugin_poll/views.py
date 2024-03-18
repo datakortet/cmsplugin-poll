@@ -1,4 +1,4 @@
-from django.shortcuts import render_to_response, get_object_or_404, render
+from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
 from django.template import RequestContext
 from django.contrib import messages
@@ -9,7 +9,7 @@ from .models import Poll, Choice
 def index(request):
     polls = Poll.objects.iterator()
     c = RequestContext(request, {'polls': polls})
-    return render_to_response('cmsplugin_poll/latest_polls.html', c)
+    return render(request, 'cmsplugin_poll/latest_polls.html', c)
 
 
 def detail(request, poll_id):

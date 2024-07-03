@@ -8,7 +8,7 @@ from .models import Poll, Choice
 
 def index(request):
     polls = Poll.objects.iterator()
-    c = RequestContext(request, {'polls': polls})
+    c = {'polls': polls}
     return render(request, 'cmsplugin_poll/latest_polls.html', c)
 
 
@@ -45,6 +45,5 @@ def vote(request, poll_id):
 
 def results(request, poll_id):
     poll = get_object_or_404(Poll, pk=poll_id)
-    print('RESULTS')
-    c = RequestContext(request, {'poll': poll})
+    c = {'poll': poll}
     return render(request, 'cmsplugin_poll/results.html', c)

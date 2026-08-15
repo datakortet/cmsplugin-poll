@@ -1,5 +1,5 @@
 from cmsplugin_poll import views
-from django.conf.urls import url
+from django.urls import re_path as url
 
 
 app_name = 'cmsplugin_poll'

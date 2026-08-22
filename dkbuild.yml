@@ -1,0 +1,11 @@
+_schema: https://static.datakortet.no/schema/dkbuild.schema.yaml
+
+package:
+  name: cmsplugin_poll
+  description: Simple poll plugin for django-cms
+  version: '0.3'
+  created: 2011
+  package_name: cmsplugin-poll
+
+build:
+  venv: cmsplugin-poll

@@ -57,18 +57,26 @@ Polls and their choices can then be created in the Django admin. Add the
 Compatibility
 =============
 
-The GitHub Actions test matrix covers these maintained combinations:
+The GitHub Actions matrix exercises every environment hop in the shared upgrade
+record:
 
-================  ==========  ================
-Python            Django      Django CMS
-================  ==========  ================
-3.10              3.2         3.11
-3.12              4.2         3.11
-================  ==========  ================
+====  ================  ==========  ================
+Hop   Python            Django      Django CMS
+====  ================  ==========  ================
+0     3.10              2.2.28      3.7.4
+1     3.11              3.2.24      3.10.1
+2     3.11              3.2.24      3.11.11
+3     3.11              3.2.24      4.1.11
+4     3.12              4.2.30      4.1.11
+5     3.12              4.2.30      5.0.10
+6     3.13              5.2.17      5.0.10
+7     3.14              6.1         5.1.1
+====  ================  ==========  ================
 
-These combinations reflect the long-term-support environments in which this
-fork is maintained. Other combinations may work, but are not currently part of
-the automated compatibility contract.
+The older rows preserve valuable evidence that Antoine Nguyen's clear,
+well-structured original implementation remains viable across an exceptional
+span of framework generations. The newer rows provide early warning for each
+planned upgrade destination.
 
 
 Historical record
@@ -120,17 +128,17 @@ Release and maintenance timeline
   quality was refreshed, and the first substantive automated test suite and
   GitHub Actions matrix were added.
 
-The historic package version remains ``0.3`` until the fork's packaging and
-release metadata are deliberately refreshed. The repository history is the
-authoritative detailed record in the meantime.
+Version ``0.8.0`` marks the maintained fork's first deliberate version advance
+while retaining Antoine Nguyen's original authorship and the project's
+history. The repository history remains the authoritative detailed record.
 
 
 Development and tests
 =====================
 
-Install a supported Django/Django CMS combination and the test requirements::
+Install the test requirements and one documented hop, for example hop 4::
 
-    python -m pip install "Django~=4.2.0" "django-cms~=3.11.0" -r tests/requirements.txt
+    python -m pip install -r tests/requirements.txt -r tests/hops/hop-4.txt
     python -m pip install --no-deps --editable .
 
 Run the import and unit tests with coverage::

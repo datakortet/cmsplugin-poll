@@ -4,7 +4,7 @@ import os
 setup(
     name = "cmsplugin-poll",
     packages = find_packages(),
-    version = "0.3",
+    version = "0.8.0",
     description = "Simple poll plugin for django-cms 2.2",
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
     author = "Antoine Nguyen",
@@ -22,5 +22,5 @@ setup(
         "Framework :: Django"
         ],
     include_package_data = True,
-    install_requires = ['setuptools', 'django-cms'],
+    install_requires = ['django-cms'],
 ) 

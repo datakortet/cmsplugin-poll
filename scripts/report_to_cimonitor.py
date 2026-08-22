@@ -66,6 +66,8 @@ def build_report(environment=None):
     pipeline_status = 'success' if job_status == 'success' else 'failed'
     python_version = environment.get('TEST_PYTHON_VERSION', platform.python_version())
     django_version = environment.get('TEST_DJANGO_VERSION', 'unknown')
+    django_cms_version = environment.get('TEST_DJANGO_CMS_VERSION', 'unknown')
+    hop = environment.get('TEST_HOP', 'unknown')
 
     return {
         'name': 'cmsplugin_poll',
@@ -73,7 +75,12 @@ def build_report(environment=None):
         'value': str(coverage['coverage']),
         'created_at': datetime.now(timezone.utc).isoformat(),
         'version': environment.get('GITHUB_SHA'),
-        'tag': 'github-py%s-django%s' % (python_version, django_version),
+        'tag': 'github-hop%s-py%s-django%s-cms%s' % (
+            hop,
+            python_version,
+            django_version,
+            django_cms_version,
+        ),
         'status': 'ok' if pipeline_status == 'success' else 'error',
         'pipeline_status': pipeline_status,
         'project_url': project_url,
@@ -87,7 +94,10 @@ def build_report(environment=None):
         'details': {
             'loc': coverage['loc'],
             'runtime': junit['runtime'],
+            'hop': hop,
             'python': python_version,
+            'django': django_version,
+            'django_cms': django_cms_version,
             'platform': sys.platform,
         },
     }

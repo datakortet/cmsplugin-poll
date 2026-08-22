@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: cmsplugin_poll 0.2\n"
+"Project-Id-Version: cmsplugin_poll 0.8.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2012-07-16 22:58+0200\n"
 "PO-Revision-Date: 2012-11-15 11:14+0100\n"

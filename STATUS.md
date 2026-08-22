@@ -9,16 +9,17 @@ Django CMS poll plugin. The core feature set is stable and intentionally small:
 polls, choices, session-based voting, results, closing, admin integration, and a
 Django CMS plugin.
 
+The package version is 0.8.0. Original authorship remains prominently credited
+in the package metadata and project documentation.
+
 ## Verification
 
 - Test suite: 28 import and unit tests.
 - Source coverage: 100% of the 144 measured `cmsplugin_poll` statements.
-- Locally verified stacks:
-  - Python 3.11.9, Django 3.2.24, Django CMS 3.10.1.
-  - Python 3.12.8, Django 4.2.30, Django CMS 3.11.11.
-- GitHub Actions matrix:
-  - Python 3.10, Django 3.2, Django CMS 3.11.
-  - Python 3.12, Django 4.2, Django CMS 3.11.
+- All eight documented hop stacks pass locally with clean dependency checks.
+- GitHub Actions covers all eight combinations in the shared upgrade record,
+  from hop 0 (Python 3.10, Django 2.2.28, Django CMS 3.7.4) through hop 7
+  (Python 3.14, Django 6.1, Django CMS 5.1.1).
 
 ## CI and reporting
 
@@ -34,8 +35,8 @@ Django CMS plugin.
 
 ## Known limitations
 
-- Distribution metadata still identifies the historic 0.3 release and original
-  Bitbucket location. This is preserved pending a deliberate fork release.
+- Distribution metadata still retains the original Bitbucket URL as historical
+  provenance; the canonical fork URL should be selected before publication.
 - A non-null `close_date` currently acts as a closed flag; it is not compared
   with the current time.
 - Duplicate-vote prevention is session-based, not tied to an authenticated user.

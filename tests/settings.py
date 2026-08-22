@@ -52,5 +52,6 @@ TEMPLATES = [
 ]
 
 CMS_TEMPLATES = [('base.html', 'Base')]
+CMS_CONFIRM_VERSION4 = True
 LANGUAGE_CODE = 'en'
 STATIC_URL = '/static/'

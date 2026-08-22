@@ -35,8 +35,10 @@ def test_build_report_uses_test_results_and_github_metadata(tmp_path):
         'GITHUB_RUN_ID': '12345',
         'GITHUB_SHA': 'abcdef',
         'TEST_JOB_STATUS': 'failure',
+        'TEST_HOP': '4',
         'TEST_PYTHON_VERSION': '3.12',
-        'TEST_DJANGO_VERSION': '4.2',
+        'TEST_DJANGO_VERSION': '4.2.30',
+        'TEST_DJANGO_CMS_VERSION': '4.1.11',
     })
 
     assert report['value'] == '87.5'
@@ -50,4 +52,6 @@ def test_build_report_uses_test_results_and_github_metadata(tmp_path):
         'fail_count': 1,
     }
     assert report['details']['loc'] == 160
-    assert report['tag'] == 'github-py3.12-django4.2'
+    assert report['details']['hop'] == '4'
+    assert report['details']['django_cms'] == '4.1.11'
+    assert report['tag'] == 'github-hop4-py3.12-django4.2.30-cms4.1.11'

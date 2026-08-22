@@ -1,6 +1,5 @@
 from django.shortcuts import get_object_or_404, render
 from django.http import HttpResponseRedirect
-from django.template import RequestContext
 from django.contrib import messages
 from django.utils.translation import gettext_lazy as _
 from .models import Poll, Choice

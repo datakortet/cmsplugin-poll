@@ -1,7 +1,7 @@
 import datetime
-from .models import Poll, Choice
 from django.contrib import admin
 from django.utils.translation import gettext_lazy as _
+from .models import Poll, Choice
 
 
 def make_closed(modeladmin, request, queryset):

@@ -1,0 +1,42 @@
+# EditorConfig - https://editorconfig.org
+# Describes the style already present in this repo; see /srv/STYLEGUIDE.md.
+root = true
+
+[*]
+charset = utf-8
+# Blobs are stored LF; the CRLF working tree comes from core.autocrlf=true.
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+# Some tracked files carry trailing whitespace and `dk pep8` ignores
+# W291/W293, so don't rewrite unrelated lines on save.
+trim_trailing_whitespace = false
+
+[*.py]
+indent_size = 4
+# STYLEGUIDE: 79 chars, up to 100 where a break would hurt readability.
+max_line_length = 100
+
+[cmsplugin_poll/migrations/*.py]
+# Django-generated, not hand-edited.
+max_line_length = off
+
+[*.html]
+# Django templates.
+indent_size = 2
+max_line_length = off
+
+[*.po]
+# gettext-generated.
+indent_size = 2
+max_line_length = off
+
+[*.{rst,in}]
+max_line_length = off
+
+[*.mo]
+# Compiled catalog - binary, leave untouched.
+charset = unset
+end_of_line = unset
+insert_final_newline = unset

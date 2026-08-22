@@ -55,7 +55,7 @@
       {% endfor %}
     </div>
   {% endif %}
-  <form action="/poll/{{ poll.id }}/vote/" method="post">
+  <form action="{% url 'cmsplugin_poll:vote' poll.id %}" method="post">
     {% csrf_token %}
     {% for choice in poll.choice_set.iterator %}
       <label for="choice{{ forloop.counter }}" class="radio">

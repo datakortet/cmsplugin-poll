@@ -19,7 +19,7 @@ class Poll(models.Model):
         return self.question
 
     def get_absolute_url(self):
-        return reverse('poll_detail', kwargs={'poll_id': self.id})
+        return reverse('cmsplugin_poll:poll_detail', kwargs={'poll_id': self.id})
 
     @property
     def votes(self):

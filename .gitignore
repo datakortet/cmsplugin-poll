@@ -1,4 +1,9 @@
 *.pyc
 cmsplugin_poll.egg-info/*
+.coverage
+.pytest_cache/
+coverage.xml
+test-results.xml
+TODO.md
 
 cmsplugin-poll.dot  

@@ -1,11 +1,13 @@
-import datetime
 from django.contrib import admin
+from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from .models import Poll, Choice
 
 
-def make_closed(modeladmin, request, queryset):
-    queryset['close_date'] = datetime.datetime.now()
+def make_closed(_modeladmin, _request, queryset):
+    queryset.update(close_date=timezone.now())
+
+
 make_closed.short_description = _("Close selected polls")
 
 

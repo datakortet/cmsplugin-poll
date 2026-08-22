@@ -7,11 +7,11 @@ register = Library()
 
 @register.simple_tag
 def get_latest_polls(count=5):
-    "FIXME: I'm useless!"
-    polls = Poll.objects.all()[:5]
+    """Render the requested number of most recently published polls."""
+    polls = Poll.objects.all()[:count]
     return render_to_string("cmsplugin_poll/latest_polls.html", {
-            "polls": polls
-            })
+        "polls": polls
+    })
 
 
 @register.simple_tag

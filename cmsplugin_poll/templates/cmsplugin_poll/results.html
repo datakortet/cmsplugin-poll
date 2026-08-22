@@ -18,11 +18,11 @@
       <li>
         {{ choice.choice }}
         ({{ choice.votes }}
-        {% ifequal choice.votes 1 %}
+        {% if choice.votes == 1 %}
         {% trans "vote" %},
         {% else %}
         {% trans "votes" %},
-        {%  endifequal %}
+        {% endif %}
         {% get_choice_rate poll choice %})
       </li>
       <div name="choice" id="{{ choice.votes }}"></div>

@@ -1,0 +1,64 @@
+name: Tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Python ${{ matrix.python }} / Django ${{ matrix.django-label }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: '3.10'
+            django: '~=3.2.0'
+            django-label: '3.2'
+          - python: '3.12'
+            django: '~=4.2.0'
+            django-label: '4.2'
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: ${{ matrix.python }}
+          cache: pip
+          cache-dependency-path: tests/requirements.txt
+
+      - name: Install test dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install "Django${{ matrix.django }}" "django-cms~=3.11.0" -r tests/requirements.txt
+          python -m pip install --no-deps --editable .
+          python -m pip check
+
+      - name: Run tests
+        run: >-
+          python -m pytest
+          --cov=cmsplugin_poll
+          --cov-report=term-missing
+          --cov-report=xml:coverage.xml
+          --junitxml=test-results.xml
+
+      - name: Report to CI Monitor
+        if: >-
+          always() &&
+          github.event_name == 'push' &&
+          github.repository == 'datakortet/cmsplugin-poll' &&
+          github.ref == 'refs/heads/master'
+        continue-on-error: true
+        env:
+          CIMONITOR_INGEST_TOKEN: ${{ secrets.CIMONITOR_INGEST_TOKEN }}
+          TEST_JOB_STATUS: ${{ job.status }}
+          TEST_PYTHON_VERSION: ${{ matrix.python }}
+          TEST_DJANGO_VERSION: ${{ matrix.django-label }}
+        run: python scripts/report_to_cimonitor.py

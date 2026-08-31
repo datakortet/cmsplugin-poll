@@ -6,4 +6,8 @@ coverage.xml
 test-results.xml
 TODO.md
 
+# dk testpackage artifacts
+build/
+.md5
+
 cmsplugin-poll.dot  

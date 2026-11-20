@@ -16,10 +16,10 @@ in the package metadata and project documentation.
 
 - Test suite: 28 import and unit tests.
 - Source coverage: 100% of the 144 measured `cmsplugin_poll` statements.
-- All eight documented hop stacks pass locally with clean dependency checks.
-- GitHub Actions covers all eight combinations in the shared upgrade record,
-  from hop 0 (Python 3.10, Django 2.2.28, Django CMS 3.7.4) through hop 7
-  (Python 3.14, Django 6.1, Django CMS 5.1.1).
+- GitHub Actions covers hop 6, what production runs (Python 3.13, Django
+  5.2.19, Django CMS 5.0.13), and hop 7 (Python 3.14, Django 6.1, Django CMS
+  5.1.1). Hops 0-5 were dropped 2026-11-20; `setup.py` still declares the
+  hop-0 floors (Django 2.2, django-cms 3.7), which are no longer tested.
 
 ## CI and reporting
 

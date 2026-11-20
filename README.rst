@@ -57,19 +57,13 @@ Polls and their choices can then be created in the Django admin. Add the
 Compatibility
 =============
 
-The GitHub Actions matrix exercises every environment hop in the shared upgrade
-record:
+The GitHub Actions matrix exercises the environment production runs (hop 6)
+and the next one (hop 7) from the shared upgrade record:
 
 ====  ================  ==========  ================
 Hop   Python            Django      Django CMS
 ====  ================  ==========  ================
-0     3.10              2.2.28      3.7.4
-1     3.11              3.2.24      3.10.1
-2     3.11              3.2.24      3.11.11
-3     3.11              3.2.24      4.1.11
-4     3.12              4.2.30      4.1.11
-5     3.12              4.2.30      5.0.10
-6     3.13              5.2.17      5.0.10
+6     3.13              5.2.19      5.0.13
 7     3.14              6.1         5.1.1
 ====  ================  ==========  ================
 
@@ -136,9 +130,9 @@ history. The repository history remains the authoritative detailed record.
 Development and tests
 =====================
 
-Install the test requirements and one documented hop, for example hop 4::
+Install the test requirements and one documented hop, for example hop 6::
 
-    python -m pip install -r tests/requirements.txt -r tests/hops/hop-4.txt
+    python -m pip install -r tests/requirements.txt -r tests/hops/hop-6.txt
     python -m pip install --no-deps --editable .
 
 Run the import and unit tests with coverage::

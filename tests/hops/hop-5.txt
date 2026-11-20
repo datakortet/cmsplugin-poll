@@ -1,2 +1,0 @@
-Django==4.2.30
-django-cms==5.0.10

@@ -1,9 +1,6 @@
-Django==3.2.24                 ; python_version < '3.12'
-Django==4.2.30                 ; python_version >= '3.12'
+Django==5.2.19
 django-classy-tags==4.1.0
-django-cms==4.1.11
+django-cms==5.0.13
 django-sekizai==4.1.0
-django-treebeard==4.7.1        ; python_version < '3.12'
-django-treebeard==4.8.0        ; python_version >= '3.12'
-pytest-django==4.8.0           ; python_version < '3.12'
-pytest-django==4.14.0          ; python_version >= '3.12'
+django-treebeard==4.8.0
+pytest-django==4.14.0

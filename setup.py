@@ -3,7 +3,7 @@ import os
 
 setup(
     name = "cmsplugin-poll",
-    packages = find_packages(),
+    packages = find_packages(exclude=("tests", "tests.*")),
     version = "0.8.0",
     description = "Simple poll plugin for django-cms",
     long_description=open(os.path.join(os.path.dirname(__file__), 'README.rst')).read(),
